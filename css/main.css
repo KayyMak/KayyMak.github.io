@@ -1,0 +1,275 @@
+@import url("reset.css");
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Everything shares one narrow, centered column. */
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+abbr {
+  text-decoration: none;
+  cursor: help;
+}
+
+/* Section headings and other structural text use the mono face. */
+h1, h2, h3,
+.site-name,
+.site-nav {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* The intro overlays fade these in once the visitor continues.
+   See intro.css for the state classes. */
+.site-header,
+main,
+.site-footer {
+  transition: opacity 0.8s ease 0.15s;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--space-xl);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-md);
+}
+
+.site-name {
+  font-size: var(--step-1);
+  color: var(--text);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--step--1);
+}
+
+/* The page you're already on reads as plain text, not an invitation. */
+.site-nav a[aria-current="page"] {
+  color: var(--text);
+}
+
+.site-nav a[aria-current="page"]:hover {
+  text-decoration: none;
+  cursor: default;
+}
+
+/* The little dashes between nav links, like " about - projects - github ". */
+.site-nav li + li::before {
+  content: "-";
+  color: var(--text-muted);
+  margin-right: var(--space-sm);
+}
+
+/* ==========================================================================
+   About section
+   ========================================================================== */
+
+section {
+  margin-bottom: var(--space-xl);
+}
+
+section > h2,
+.page-title {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-md);
+}
+
+.intro-line {
+  font-size: var(--step-3);
+  line-height: 1.25;
+  margin-bottom: var(--space-md);
+}
+
+.intro-line .accent {
+  color: var(--accent);
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.about-body p + p {
+  margin-top: var(--space-md);
+}
+
+/* ==========================================================================
+   Entries — shared by experience, projects, activities, and education
+   ========================================================================== */
+
+.entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Title on the left, date pinned to the right, everything else full width. */
+.entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem var(--space-md);
+  align-items: baseline;
+}
+
+.entry h2,
+.entry h3 {
+  font-size: var(--step-1);
+}
+
+.entry-date {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.entry-org,
+.entry-desc {
+  grid-column: 1 / -1;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.bullets {
+  grid-column: 1 / -1;
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+/* The reset strips list markers, so draw our own. */
+.bullets li::before {
+  content: "\2014";          /* em dash */
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.tags {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.tags li {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+}
+
+/* ==========================================================================
+   Skills
+   ========================================================================== */
+
+.skills {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-sm) var(--space-md);
+}
+
+.skills dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  padding-top: 0.15rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--space-md) var(--space-lg);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.site-footer ul {
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* ==========================================================================
+   Small screens
+   ========================================================================== */
+
+@media (max-width: 34rem) {
+  :root {
+    --step-3: 1.875rem;
+    --space-xl: 3.5rem;
+  }
+
+  .entry {
+    grid-template-columns: 1fr;
+  }
+
+  .skills {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .skills dd + dt {
+    margin-top: var(--space-sm);
+  }
+}

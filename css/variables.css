@@ -1,0 +1,40 @@
+:root {
+  /* ---- Color ---- */
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1c1b1a;
+  --text-muted: #6b6864;
+  --accent: #d6006b;
+  --rule: #e3e0da;
+
+  /* ---- Type ---- */
+  --font-body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.625rem;
+  --step-3: 2.25rem;
+
+  /* ---- Layout ---- */
+  --measure: 46rem;
+  --gutter: 1.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+}
+
+/* Dark mode: same layout, inverted palette. Delete this block if you
+   only ever want the light version. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17161a;
+    --surface: #1f1e23;
+    --text: #eceae6;
+    --text-muted: #9c9891;
+    --accent: #ff5ca0;
+    --rule: #33313a;
+  }
+}

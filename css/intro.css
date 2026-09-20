@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Intro
+   The loading screen and the "click to continue" screen. Both are full-screen
+   overlays that sit on top of the page; JS swaps the .visible class between
+   them (see js/intro.js).
+
+   They start hidden, so if JS never runs the page is still perfectly usable.
+   ========================================================================== */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--gutter);
+
+  background: var(--bg);
+  font-family: var(--font-mono);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.6s ease, visibility 0.6s linear;
+}
+
+.intro.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* While an intro screen is up, lock scrolling and hold the page back. */
+body.intro-active {
+  overflow: hidden;
+}
+
+body.intro-active .site-header,
+body.intro-active main,
+body.intro-active .site-footer {
+  opacity: 0;
+}
+
+/* ---- Loading screen ---- */
+
+.loading-label {
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.loading-bar {
+  width: min(14rem, 60vw);
+  height: 2px;
+  margin-top: var(--space-md);
+  background: var(--rule);
+  overflow: hidden;
+}
+
+/* JS sets the width frame by frame — see render() in js/intro.js. The
+   transition just smooths the jump when the bar completes on page load. */
+.loading-bar-fill {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.2s linear;
+}
+
+.loading-percent {
+  margin-top: var(--space-sm);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  /* Keeps the digits from jittering as the number climbs. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Click-to-continue screen ---- */
+
+#click-to-continue {
+  cursor: pointer;
+}
+
+.continue-name {
+  font-size: var(--step-3);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.continue-hint {
+  margin-top: var(--space-md);
+  font-size: var(--step--1);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  animation: hint-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* Respect a visitor's reduced-motion setting. The bar still fills, since
+   that reports real progress rather than decorating. */
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .site-header,
+  main,
+  .site-footer {
+    transition-duration: 0.01ms;
+  }
+
+  .continue-hint {
+    animation: none;
+  }
+}

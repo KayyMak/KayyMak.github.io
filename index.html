@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olukayode Makinde-Odusola</title>
+  <meta name="description" content="Computer science student at UC Davis. I build backend APIs with Python, FastAPI, and PostgreSQL.">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- The intro runs on the home page only, once per visit. See js/intro.js. -->
+  <div class="intro" id="loading">
+    <div>
+      <p class="loading-label">loading</p>
+      <div class="loading-bar">
+        <div class="loading-bar-fill" id="loading-fill"></div>
+      </div>
+      <p class="loading-percent" id="loading-percent">0%</p>
+    </div>
+  </div>
+
+  <div class="intro" id="click-to-continue">
+    <div>
+      <p class="continue-name">Olukayode Makinde-Odusola</p>
+      <p class="continue-hint">click anywhere to continue</p>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="index.html">olukayode makinde-odusola</a>
+
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html" aria-current="page">about</a></li>
+          <li><a href="experience.html">experience</a></li>
+          <li><a href="projects.html">projects</a></li>
+          <li><a href="activities.html">activities</a></li>
+          <li><a href="https://github.com/KayyMak">github</a></li>
+          <li><a href="https://www.linkedin.com/in/olukayodem">linkedin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section id="about">
+      <h1 class="intro-line">Hi, I'm <span class="accent">Olukayode</span>.</h1>
+      <p class="tagline">Computer Science @ UC&nbsp;Davis &middot; Sacramento, CA</p>
+
+      <div class="about-body">
+        <p>
+          I'm a computer science student at UC Davis who spends most of his time
+          on the backend. Lately that has meant Python and FastAPI — designing
+          REST endpoints, modeling data in PostgreSQL, and figuring out how to
+          make a schema survive its next change.
+        </p>
+        <p>
+          Right now I'm a research assistant at CSU Monterey Bay, where I build
+          the data pipeline behind a set of cognitive tests and get reaction
+          times in front of researchers while a study is still running. Before
+          that I prompt-engineered upskilling plans at a startup and fixed
+          people's computers for the City of Roseville.
+        </p>
+        <p>
+          I'm always up for talking about APIs, databases, or getting more Black
+          engineers through the pipeline — that last one is most of what I do
+          for <abbr title="National Society of Black Engineers">NSBE</abbr>.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <dl class="skills">
+        <dt>Languages</dt>
+        <dd>Python, Java, SQL, TypeScript, JavaScript, HTML/CSS</dd>
+
+        <dt>Technologies</dt>
+        <dd>FastAPI, Flask, Pandas, React, Streamlit</dd>
+
+        <dt>Tools</dt>
+        <dd>PostgreSQL, Docker, Git, GitHub</dd>
+      </dl>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+
+      <div class="entry">
+        <h3>University of California, Davis</h3>
+        <p class="entry-date">Expected June 2030</p>
+        <p class="entry-org">B.S. Computer Science &middot; GPA 4.0 &middot; Davis, CA</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> Olukayode Makinde-Odusola</p>
+      <ul>
+        <li><a href="https://github.com/KayyMak">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/olukayodem">LinkedIn</a></li>
+        <li><a href="mailto:olukayodemak@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/intro.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
