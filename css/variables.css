@@ -32,10 +32,9 @@
 
 /* Dark mode: same layout, same relationships, inverted.
 
-   Three selectors, because the theme has two sources. The toggle writes
-   data-theme on <html>, which wins outright. Failing that, the media query
-   follows the operating system — but only when the visitor has not explicitly
-   chosen light, hence the :not(). */
+   The site opens light for everyone. Dark applies only when the toggle has
+   written data-theme="dark", so the operating system's preference is
+   deliberately not consulted. */
 :root[data-theme="dark"] {
   --bg: #0f151d;
   --surface: #151d27;
@@ -43,15 +42,4 @@
   --text-muted: #94a3b6;
   --accent: #72b4ff;
   --rule: #253141;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f151d;
-    --surface: #151d27;
-    --text: #e7edf5;
-    --text-muted: #94a3b6;
-    --accent: #72b4ff;
-    --rule: #253141;
-  }
 }

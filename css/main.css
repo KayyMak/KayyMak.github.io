@@ -137,16 +137,6 @@ main,
   display: block;
 }
 
-/* Without JS there is no data-theme, so follow the system here too. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
-    display: none;
-  }
-
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
-    display: block;
-  }
-}
 
 .site-name {
   font-size: var(--step-1);
