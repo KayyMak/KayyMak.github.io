@@ -11,6 +11,16 @@ body {
   font-size: var(--step-0);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+
+  /* Hold the footer at the bottom of the viewport regardless of how short
+     the page is. main takes the leftover height. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 /* Everything shares one narrow, centered column. */
@@ -129,7 +139,38 @@ section > h2,
   font-family: var(--font-mono);
   font-size: var(--step--1);
   color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.social {
+  display: flex;
+  gap: var(--space-sm);
   margin-bottom: var(--space-lg);
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.social a:hover,
+.social a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* currentColor lets one icon work in both themes and on hover. */
+.social svg {
+  width: 1.0625rem;
+  height: 1.0625rem;
+  fill: currentColor;
 }
 
 .about-body p + p {
