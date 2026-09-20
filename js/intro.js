@@ -22,6 +22,8 @@ const loadingScreen = document.getElementById("loading");
 const continueScreen = document.getElementById("click-to-continue");
 const fill = document.getElementById("loading-fill");
 const readout = document.getElementById("loading-percent");
+const nameEl = document.querySelector(".continue-name");
+const siteName = document.querySelector(".site-name");
 
 let pageLoaded = document.readyState === "complete";
 let startedAt = null;
@@ -72,8 +74,70 @@ function showMain() {
   continueScreen.removeEventListener("click", showMain);
   document.removeEventListener("keydown", showMain);
 
-  continueScreen.classList.remove("visible");
+  // Let the page start fading in underneath while the name is still moving.
   body.classList.remove("intro-active");
+
+  if (!canFly()) {
+    continueScreen.classList.remove("visible");
+    return;
+  }
+
+  flyNameToHeader();
+}
+
+function canFly() {
+  if (!nameEl || !siteName || typeof nameEl.animate !== "function") {
+    return false;
+  }
+
+  // A name sliding across the screen is exactly what this setting asks us
+  // not to do.
+  try {
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch (err) {
+    return true;
+  }
+}
+
+// FLIP: measure where the word is now, measure where the wordmark sits, then
+// animate the difference. The header is already laid out at this point — it
+// was only transparent, never absent — so its box is there to be measured.
+function flyNameToHeader() {
+  siteName.classList.add("handing-off");
+  continueScreen.classList.add("exiting");
+
+  const from = nameEl.getBoundingClientRect();
+  const to = siteName.getBoundingClientRect();
+
+  // Scale by font size rather than box height: the two have different
+  // line-heights, so their boxes are not proportional to their type.
+  const fromSize = parseFloat(window.getComputedStyle(nameEl).fontSize);
+  const toSize = parseFloat(window.getComputedStyle(siteName).fontSize);
+  const scale = fromSize ? toSize / fromSize : 1;
+
+  const dx = to.left - from.left;
+  const dy = to.top - from.top;
+
+  const flight = nameEl.animate(
+    [
+      { transform: "translate(0, 0) scale(1)", opacity: 1 },
+      { transform: "translate(" + dx + "px, " + dy + "px) scale(" + scale + ")", opacity: 0 }
+    ],
+    {
+      duration: 700,
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+      fill: "forwards"
+    }
+  );
+
+  // The word reads "mak" and the wordmark reads the full name, so the last
+  // stretch is a crossfade rather than a true morph.
+  flight.finished.then(landed, landed);
+}
+
+function landed() {
+  continueScreen.classList.remove("visible", "exiting");
+  siteName.classList.remove("handing-off");
 }
 
 // The intro is an arrival, not a page transition. Someone clicking "about"

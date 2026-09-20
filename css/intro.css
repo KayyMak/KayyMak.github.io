@@ -87,6 +87,33 @@ body.intro-active .site-footer {
   font-size: var(--step-3);
   font-weight: 600;
   letter-spacing: -0.02em;
+
+  /* inline-block so the box hugs the word: the flight measures this rect,
+     and a full-width block would put its left edge in the wrong place.
+     The origin matches, so translate + scale map corner to corner. */
+  display: inline-block;
+  transform-origin: left top;
+}
+
+/* ---- Handoff: the name flies to the header wordmark ----
+   The backdrop clears while the name is still travelling, so the page is
+   revealed underneath it rather than after it. */
+#click-to-continue.exiting {
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color 0.5s ease;
+}
+
+#click-to-continue.exiting .continue-hint {
+  opacity: 0;
+  animation: none;
+  transition: opacity 0.2s ease;
+}
+
+/* The real wordmark waits, hidden but still occupying its space, so the
+   flight has something to aim at and nothing doubles up on landing. */
+.site-name.handing-off {
+  visibility: hidden;
 }
 
 .continue-hint {
