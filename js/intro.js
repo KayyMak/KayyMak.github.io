@@ -76,8 +76,23 @@ function showMain() {
   body.classList.remove("intro-active");
 }
 
-// Pages without the overlays skip all of this.
-if (loadingScreen && continueScreen) {
+// The intro is an arrival, not a page transition. Someone clicking "about"
+// from Projects is already inside the site and has seen it, so check where
+// they came from: an outside referrer, or none at all, means a fresh visit.
+function camefromInsideTheSite() {
+  if (!document.referrer) {
+    return false;
+  }
+
+  try {
+    return new URL(document.referrer).origin === window.location.origin;
+  } catch (err) {
+    return false;
+  }
+}
+
+// Pages without the overlays, and arrivals from elsewhere on the site, skip it.
+if (loadingScreen && continueScreen && !camefromInsideTheSite()) {
   window.addEventListener("load", function () {
     pageLoaded = true;
   });
