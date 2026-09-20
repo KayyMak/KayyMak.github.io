@@ -1,11 +1,15 @@
 :root {
-  /* ---- Color ---- */
-  --bg: #fbfaf7;
+  /* ---- Color ----
+     A cool, blue-tinted paper rather than pure white, with a deeper blue
+     carrying the links. Every pair below clears WCAG AA against the
+     background; body text clears AAA. Swapping --accent for a warmer hue
+     is a one-line change if you ever want the links to pop more. */
+  --bg: #f1f6fc;
   --surface: #ffffff;
-  --text: #1c1b1a;
-  --text-muted: #6b6864;
-  --accent: #d6006b;
-  --rule: #e3e0da;
+  --text: #16202e;
+  --text-muted: #55667a;
+  --accent: #1462c4;
+  --rule: #d5e1ef;
 
   /* ---- Type ---- */
   --font-body: Georgia, "Iowan Old Style", "Times New Roman", serif;
@@ -26,15 +30,15 @@
   --space-xl: 5rem;
 }
 
-/* Dark mode: same layout, inverted palette. Delete this block if you
-   only ever want the light version. */
+/* Dark mode: same layout, same relationships, inverted. Delete this block if
+   you only ever want the light version. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #17161a;
-    --surface: #1f1e23;
-    --text: #eceae6;
-    --text-muted: #9c9891;
-    --accent: #ff5ca0;
-    --rule: #33313a;
+    --bg: #0f151d;
+    --surface: #151d27;
+    --text: #e7edf5;
+    --text-muted: #94a3b6;
+    --accent: #72b4ff;
+    --rule: #253141;
   }
 }
