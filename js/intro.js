@@ -142,6 +142,10 @@ function landed() {
   // read as the word ghosting after it had already landed.
   nameEl.style.visibility = "hidden";
   siteName.classList.remove("handing-off");
+
+  // Drop the overlay outright rather than fading it: the backdrop is already
+  // transparent and the word is gone, so there is nothing left to fade.
+  continueScreen.classList.add("finished");
   continueScreen.classList.remove("visible", "exiting");
 }
 

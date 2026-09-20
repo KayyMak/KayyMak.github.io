@@ -121,6 +121,14 @@ body.intro-active .site-footer {
   visibility: hidden;
 }
 
+/* Once the word has landed the overlay has no job left, so it goes at once.
+   Letting it fade instead would drop .exiting mid-fade, snapping the
+   backdrop back to opaque while the overlay was still on screen — a
+   full-height flash of background right after the animation finished. */
+.intro.finished {
+  display: none;
+}
+
 .continue-hint {
   margin-top: var(--space-md);
   font-size: var(--step--1);
