@@ -95,13 +95,10 @@ main,
   gap: var(--space-sm) var(--space-md);
 }
 
-/* Pushes the nav, and the toggle that follows it, to the right edge. */
-.site-nav {
-  margin-left: auto;
-}
-
-/* Sits at the right end of the bar, matching the circular social icons. */
+/* Sits alone at the far right of the bar, with the wordmark and nav grouped
+   together on the left. Styled to match the circular social icons. */
 .theme-toggle {
+  margin-left: auto;
   display: grid;
   place-items: center;
   width: 2.25rem;

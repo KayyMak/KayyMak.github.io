@@ -86,7 +86,8 @@ body.intro-active .site-footer {
 .continue-name {
   font-size: var(--step-3);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  /* Matches .site-name, so the word lands on the wordmark exactly. */
+  letter-spacing: -0.01em;
 
   /* inline-block so the box hugs the word: the flight measures this rect,
      and a full-width block would put its left edge in the wrong place.

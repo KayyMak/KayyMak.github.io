@@ -118,10 +118,13 @@ function flyNameToHeader() {
   const dx = to.left - from.left;
   const dy = to.top - from.top;
 
+  // No opacity in the animation: the word stays solid the whole way and the
+  // real wordmark takes over on the last frame. Both read "mak" in the same
+  // face, so the swap happens where they already coincide.
   const flight = nameEl.animate(
     [
-      { transform: "translate(0, 0) scale(1)", opacity: 1 },
-      { transform: "translate(" + dx + "px, " + dy + "px) scale(" + scale + ")", opacity: 0 }
+      { transform: "translate(0, 0) scale(1)" },
+      { transform: "translate(" + dx + "px, " + dy + "px) scale(" + scale + ")" }
     ],
     {
       duration: 700,
@@ -130,8 +133,6 @@ function flyNameToHeader() {
     }
   );
 
-  // The word reads "mak" and the wordmark reads the full name, so the last
-  // stretch is a crossfade rather than a true morph.
   flight.finished.then(landed, landed);
 }
 
