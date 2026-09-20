@@ -95,12 +95,14 @@ body.intro-active .site-footer {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
-  animation: hint-pulse 2s ease-in-out infinite;
+  /* alternate runs the fade out and back in, so it breathes rather than
+     snapping back to full at the end of each loop. */
+  animation: hint-pulse 1.4s ease-in-out infinite alternate;
 }
 
 @keyframes hint-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.35; }
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 /* Respect a visitor's reduced-motion setting. The bar still fills, since
