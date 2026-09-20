@@ -95,14 +95,16 @@ body.intro-active .site-footer {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
-  /* alternate runs the fade out and back in, so it breathes rather than
-     snapping back to full at the end of each loop. */
-  animation: hint-pulse 1.4s ease-in-out infinite alternate;
+  animation: hint-pulse 2.6s ease-in-out infinite;
 }
 
+/* A title screen waiting for input: fade up, hold bright, fade out, hold
+   dark. The flat stretches are what make it read as a deliberate prompt
+   rather than a constant shimmer. */
 @keyframes hint-pulse {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+  0%,  8%   { opacity: 0; }
+  38%, 58%  { opacity: 1; }
+  88%, 100% { opacity: 0; }
 }
 
 /* Respect a visitor's reduced-motion setting. The bar still fills, since
