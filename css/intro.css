@@ -86,8 +86,12 @@ body.intro-active .site-footer {
 .continue-name {
   font-size: var(--step-3);
   font-weight: 600;
-  /* Matches .site-name, so the word lands on the wordmark exactly. */
+  /* Both match .site-name so the word lands on the wordmark exactly. The
+     line-height matters as much as the tracking: the flight aligns boxes,
+     and a taller box puts the glyphs lower inside it, which showed up as a
+     small jump when the real wordmark took over. */
   letter-spacing: -0.01em;
+  line-height: 1.2;
 
   /* inline-block so the box hugs the word: the flight measures this rect,
      and a full-width block would put its left edge in the wrong place.

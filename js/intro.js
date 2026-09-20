@@ -137,8 +137,12 @@ function flyNameToHeader() {
 }
 
 function landed() {
-  continueScreen.classList.remove("visible", "exiting");
+  // Hide the flown word in the same frame the real one appears. Without this
+  // it lingers on top of the wordmark and fades out with the overlay, which
+  // read as the word ghosting after it had already landed.
+  nameEl.style.visibility = "hidden";
   siteName.classList.remove("handing-off");
+  continueScreen.classList.remove("visible", "exiting");
 }
 
 // The intro is an arrival, not a page transition. Someone clicking "about"
