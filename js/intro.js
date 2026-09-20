@@ -5,10 +5,9 @@
 //   2. ready   — "click to continue", waiting for the visitor
 //   3. main    — both overlays gone, the page fades in
 //
-// Only the home page carries the overlays, and only the first visit of a
-// session sees them — sitting through a loading bar on every nav click gets
-// old fast. The overlays are hidden in CSS by default, so if this file fails
-// to load the visitor still lands straight on the page.
+// Only the home page carries the overlays, so the other pages load straight
+// in. The overlays are hidden in CSS by default, so if this file fails to
+// load the visitor still lands straight on the page.
 
 // How long the bar takes to fill, assuming the page is already loaded.
 const LOADING_MS = 1800;
@@ -18,8 +17,6 @@ const LOADING_MS = 1800;
 // stretch means something rather than just running out the timer.
 const HOLD_AT = 90;
 
-const SEEN_KEY = "introSeen";
-
 const body = document.body;
 const loadingScreen = document.getElementById("loading");
 const continueScreen = document.getElementById("click-to-continue");
@@ -28,23 +25,6 @@ const readout = document.getElementById("loading-percent");
 
 let pageLoaded = document.readyState === "complete";
 let startedAt = null;
-
-// Storage can throw in a private window, and it is not worth failing over.
-function seenThisSession() {
-  try {
-    return sessionStorage.getItem(SEEN_KEY) === "1";
-  } catch (err) {
-    return false;
-  }
-}
-
-function rememberSeen() {
-  try {
-    sessionStorage.setItem(SEEN_KEY, "1");
-  } catch (err) {
-    // No storage, so the intro replays next visit. Harmless.
-  }
-}
 
 function showLoading() {
   body.classList.add("intro-active");
@@ -94,11 +74,10 @@ function showMain() {
 
   continueScreen.classList.remove("visible");
   body.classList.remove("intro-active");
-  rememberSeen();
 }
 
-// Pages without the overlays, and repeat visits in the same session, skip it.
-if (loadingScreen && continueScreen && !seenThisSession()) {
+// Pages without the overlays skip all of this.
+if (loadingScreen && continueScreen) {
   window.addEventListener("load", function () {
     pageLoaded = true;
   });
