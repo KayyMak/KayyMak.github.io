@@ -4,6 +4,20 @@
    Base
    ========================================================================== */
 
+/* Reserve room for the scrollbar on every page. Without this, a short page
+   has no scrollbar and a long one does, and the centered column jumps
+   sideways by the scrollbar's width as you move between them. */
+html {
+  overflow-y: scroll;
+}
+
+@supports (scrollbar-gutter: stable) {
+  html {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);
