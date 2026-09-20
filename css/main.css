@@ -91,9 +91,61 @@ main,
 .site-header .wrap {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
+  align-items: center;
   gap: var(--space-sm) var(--space-md);
+}
+
+/* Pushes the nav, and the toggle that follows it, to the right edge. */
+.site-nav {
+  margin-left: auto;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.theme-toggle svg {
+  width: 1.0625rem;
+  height: 1.0625rem;
+  fill: currentColor;
+}
+
+/* Show the mark for the theme currently in effect: sun in light, moon in
+   dark. The head script sets data-theme before first paint. */
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* Without JS there is no data-theme, so follow the system here too. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: block;
+  }
 }
 
 .site-name {

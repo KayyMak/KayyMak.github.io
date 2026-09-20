@@ -30,10 +30,23 @@
   --space-xl: 5rem;
 }
 
-/* Dark mode: same layout, same relationships, inverted. Delete this block if
-   you only ever want the light version. */
+/* Dark mode: same layout, same relationships, inverted.
+
+   Three selectors, because the theme has two sources. The toggle writes
+   data-theme on <html>, which wins outright. Failing that, the media query
+   follows the operating system — but only when the visitor has not explicitly
+   chosen light, hence the :not(). */
+:root[data-theme="dark"] {
+  --bg: #0f151d;
+  --surface: #151d27;
+  --text: #e7edf5;
+  --text-muted: #94a3b6;
+  --accent: #72b4ff;
+  --rule: #253141;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0f151d;
     --surface: #151d27;
     --text: #e7edf5;
